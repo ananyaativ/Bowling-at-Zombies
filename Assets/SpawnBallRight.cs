@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnBall : MonoBehaviour
+public class SpawnBallRight : MonoBehaviour
 {
     public GameObject prefab;
     public float spawnSpeed = 5;
