@@ -7,8 +7,7 @@ public class Zombie : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("SpawnZombie",1, 1);
-        
+        Invoke("SpawnZombie", 1);
     }
 
     void SpawnZombie()
@@ -16,6 +15,7 @@ public class Zombie : MonoBehaviour
         Vector3 zPos = Camera.main.transform.forward *10;
         zPos.y = 0;
         Instantiate(zombie, zPos, Quaternion.identity);
+        Invoke("SpawnZombie", Random.Range(1, 5));
     }
     // Update is called once per frame
     void Update()
