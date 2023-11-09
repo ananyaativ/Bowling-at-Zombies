@@ -21,6 +21,7 @@ public class SpawnBallRight : MonoBehaviour
             GameObject spawnBall = Instantiate(prefab, transform.position, Quaternion.identity);
             Rigidbody spawnedBallRB = spawnBall.GetComponent<Rigidbody>();
             spawnedBallRB.velocity = transform.forward * spawnSpeed;
+            Destroy(spawnBall,10);
         }
     }
 }
