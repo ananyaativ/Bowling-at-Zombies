@@ -6,6 +6,7 @@ TagManager:
   tags:
   - zombie
   - sphere
+  - player
   layers:
   - Default
   - TransparentFX

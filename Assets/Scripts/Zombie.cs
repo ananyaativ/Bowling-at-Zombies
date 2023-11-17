@@ -12,8 +12,9 @@ public class Zombie : MonoBehaviour
 
     void SpawnZombie()
     {
+        Vector3 pos = new Vector3(0, -1.5f, 0);
         Vector3 zPos = Camera.main.transform.forward *10;
-        zPos.y = -1;
+        zPos.y = -1.5f;
         zPos = Quaternion.AngleAxis(Random.Range(-90, 90), Vector3.up) * zPos;
         Instantiate(zombie, zPos, Quaternion.identity);
         Invoke("SpawnZombie", Random.Range(1, 5));
