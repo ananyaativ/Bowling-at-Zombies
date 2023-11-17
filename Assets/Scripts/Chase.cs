@@ -8,10 +8,12 @@ public class Chase : MonoBehaviour
     float rotationSpeed = 1;
     Animator anim;
     Boolean dead = false;
+    ScoreManager manager;
     // Start is called before the first frame update
     void Start()
     {
         anim = this.GetComponent<Animator>();
+        manager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
     }
 
     void OnTriggerEnter(Collider collider)
@@ -22,6 +24,8 @@ public class Chase : MonoBehaviour
             dead = true;
             this.GetComponent<Collider>().enabled = false;
             Destroy(this.gameObject,5);
+            Debug.Log(manager);
+            manager.ChangeScoreBy(1);
         }
     }
 
