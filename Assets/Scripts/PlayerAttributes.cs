@@ -5,38 +5,46 @@ using TMPro;
 
 public class PlayerAttributes : MonoBehaviour
 {
+    public static PlayerAttributes instance;
+
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI highScoreText;
+    public TextMeshProUGUI healthText;
 
     int score = 0;
     int highScore = 0;
     int health = 50;
 
+    private void Awake()
+    {
+        instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        highScore = PlayerPrefs.GetInt("highScore", 0);
         scoreText.text = "SCORE: " + score.ToString();
         highScoreText.text = "HIGHSCORE: " + highScore.ToString();
-
+        healthText.text = "HEALTH: " + health.ToString();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ChangeHealthBy(int change)
     {
+        health += change;
+        healthText.text = "HEALTH: " + health.ToString();
+        if (health <= 0)
+        {
+            // Write code for displaying end game screen
+            Debug.Log("End game");
+        }
+    }
+
+    public void ChangeScoreBy(int change)
+    {
+        score += change;
         scoreText.text = "SCORE: " + score.ToString();
-        highScoreText.text = "HIGHSCORE: " + highScore.ToString();
-
-    }
-
-    public void ChangeHealthBy(int dec)
-    {
-        health +=dec;
-        Debug.Log("Health: " + health);
-    }
-
-    public void ChangeScoreBy(int inc)
-    {
-        score += inc;
-        //Debug.Log("Score: " + score);
+        if (highScore < score)
+            PlayerPrefs.SetInt("highScore", score);
     }
 }

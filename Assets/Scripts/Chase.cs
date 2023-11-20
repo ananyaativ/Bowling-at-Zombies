@@ -8,12 +8,10 @@ public class Chase : MonoBehaviour
     float rotationSpeed = 1;
     Animator anim;
     Boolean dead = false;
-    PlayerAttributes manager;
     // Start is called before the first frame update
     void Start()
     {
         anim = this.GetComponent<Animator>();
-        manager = GameObject.Find("PlayerAttributes").GetComponent<PlayerAttributes>();
     }
 
     void OnTriggerEnter(Collider collider)
@@ -24,14 +22,11 @@ public class Chase : MonoBehaviour
             dead = true;
             this.GetComponent<Collider>().enabled = false;
             Destroy(this.gameObject,5);
-            Debug.Log(manager);
-            manager.ChangeScoreBy(1);
+            PlayerAttributes.instance.ChangeScoreBy(1);
         }
-
-        if(collider.gameObject.tag == "player")
+        else if (collider.gameObject.tag == "player")
         {
-            manager.ChangeHealthBy(-1);
-
+            PlayerAttributes.instance.ChangeHealthBy(-1);
         }
     }
 
