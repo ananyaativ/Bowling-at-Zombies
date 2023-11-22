@@ -10,10 +10,12 @@ public class PlayerAttributes : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI highScoreText;
     public TextMeshProUGUI healthText;
+    public GameObject gameOver;
+    public bool dead = false;
 
     int score = 0;
     int highScore = 0;
-    int health = 50;
+    int health = 2;
 
     private void Awake()
     {
@@ -29,15 +31,25 @@ public class PlayerAttributes : MonoBehaviour
         healthText.text = "HEALTH: " + health.ToString();
     }
 
+    private void Update()
+    {
+        if (health <= 0)
+        {
+            // Write code for displaying end game screen
+            gameOver.SetActive(true);
+            dead = true;
+            Debug.Log("End game");
+        }
+        if (dead && OVRInput.Get(OVRInput.Button.One))
+        {
+            RestartGame();
+        }
+    }
+
     public void ChangeHealthBy(int change)
     {
         health += change;
         healthText.text = "HEALTH: " + health.ToString();
-        if (health <= 0)
-        {
-            // Write code for displaying end game screen
-            Debug.Log("End game");
-        }
     }
 
     public void ChangeScoreBy(int change)
@@ -46,5 +58,13 @@ public class PlayerAttributes : MonoBehaviour
         scoreText.text = "SCORE: " + score.ToString();
         if (highScore < score)
             PlayerPrefs.SetInt("highScore", score);
+    }
+
+    public void RestartGame()
+    {
+        score = 0;
+        health = 5;
+        dead = false;
+        gameOver.SetActive(false);
     }
 }

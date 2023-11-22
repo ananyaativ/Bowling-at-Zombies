@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Zombie : MonoBehaviour
 {   public GameObject zombie;
+    public PlayerAttributes player;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +18,8 @@ public class Zombie : MonoBehaviour
         zPos.y = -1.5f;
         zPos = Quaternion.AngleAxis(Random.Range(-90, 90), Vector3.up) * zPos;
         Instantiate(zombie, pos, Quaternion.identity);
-        Invoke("SpawnZombie", Random.Range(1, 5));
+        if (!player.dead)
+            Invoke("SpawnZombie", Random.Range(1, 5));
 
     }
     // Update is called once per frame
