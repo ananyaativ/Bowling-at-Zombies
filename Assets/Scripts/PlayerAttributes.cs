@@ -23,6 +23,7 @@ public class PlayerAttributes : MonoBehaviour
     }
 
     // Start is called before the first frame update
+    
     void Start()
     {
         highScore = PlayerPrefs.GetInt("highScore", 0);
@@ -34,7 +35,7 @@ public class PlayerAttributes : MonoBehaviour
     private void Update()
     {
         if (health <= 0)
-        {
+        {   // TODO : Destroy all zombies after ending game
             // Write code for displaying end game screen
             gameOver.SetActive(true);
             dead = true;
