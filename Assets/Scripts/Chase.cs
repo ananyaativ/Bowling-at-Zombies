@@ -33,9 +33,9 @@ public class Chase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (dead) return;
-        //Vector3 direction = Camera.main.transform.position - this.transform.position;
-        //direction.y = 0;
-        //this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(direction), rotationSpeed * Time.deltaTime);
+        if (dead) return;
+        Vector3 direction = Camera.main.transform.position - this.transform.position;
+        direction.y = 0;
+        this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(direction), rotationSpeed * Time.deltaTime);
     }
 }

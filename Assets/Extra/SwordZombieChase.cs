@@ -26,7 +26,7 @@ public class SwordZombieChase : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        //debug.log("collided with: " + collision.collider);
+        Debug.Log("collided with: " + collision.collider);
         isCollided = true;
 
     }

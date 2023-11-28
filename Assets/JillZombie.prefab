@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4804689592697300073}
   - component: {fileID: 6732607349715295710}
-  - component: {fileID: 2020256293227496929}
-  - component: {fileID: 7361069828811602033}
   m_Layer: 3
   m_Name: JillZombie
   m_TagString: Untagged
@@ -60,43 +58,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
---- !u!136 &2020256293227496929
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1047065492412217186}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 8
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.32
-  m_Height: 1.63
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.77, z: 0}
---- !u!114 &7361069828811602033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1047065492412217186}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fafc6e6f9545f334b9018ef0e00e1f17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2163800930539621362
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -641,6 +604,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 95667962770979010, guid: 557ba3f2d9df542b2811f347814ffe25, type: 3}
+      propertyPath: m_UpdateMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 95667962770979010, guid: 557ba3f2d9df542b2811f347814ffe25, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 136908970678337806, guid: 557ba3f2d9df542b2811f347814ffe25, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -648,8 +619,39 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1840692612347688, guid: 557ba3f2d9df542b2811f347814ffe25, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4368192037629310395}
   m_SourcePrefab: {fileID: 100100000, guid: 557ba3f2d9df542b2811f347814ffe25, type: 3}
+--- !u!1 &2162246115246079194 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1840692612347688, guid: 557ba3f2d9df542b2811f347814ffe25, type: 3}
+  m_PrefabInstance: {fileID: 2163800930539621362}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &4368192037629310395
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2162246115246079194}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 8
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.32
+  m_Height: 1.63
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.77, z: 0}
 --- !u!4 &2168196490133743738 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4967882250445704, guid: 557ba3f2d9df542b2811f347814ffe25, type: 3}
