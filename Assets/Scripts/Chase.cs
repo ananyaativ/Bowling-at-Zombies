@@ -7,27 +7,18 @@ public class Chase : MonoBehaviour
 {
     float rotationSpeed = 1;
     Animator anim;
-    Boolean dead = false;
+    bool dead = false;
+
     // Start is called before the first frame update
     void Start()
     {
         anim = this.GetComponent<Animator>();
     }
 
-    void OnTriggerEnter(Collider collider)
+    public void Kill()
     {
-        if (collider.gameObject.tag == "sphere")
-        {   
-            anim.SetTrigger("hit");
-            dead = true;
-            this.GetComponent<Collider>().enabled = false;
-            Destroy(this.gameObject,5);
-            PlayerAttributes.instance.ChangeScoreBy(1);
-        }
-        else if (collider.gameObject.tag == "player")
-        {
-            PlayerAttributes.instance.ChangeHealthBy(-1);
-        }
+        anim.SetTrigger("hit");
+        dead = true;
     }
 
     // Update is called once per frame
