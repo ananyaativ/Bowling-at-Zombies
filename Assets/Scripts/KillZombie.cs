@@ -14,7 +14,7 @@ public class KillZombie : MonoBehaviour
             Debug.Log("Colliding with bullet");
             c.Kill();
             this.GetComponent<Collider>().enabled = false;
-            Destroy(this.gameObject, 3);
+            Destroy(transform.parent.parent.gameObject, 3);
             PlayerAttributes.instance.ChangeScoreBy(1);
         }
         else if (collider.gameObject.tag == "player")

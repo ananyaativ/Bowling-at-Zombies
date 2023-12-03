@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Zombie : MonoBehaviour
-{   public GameObject zombie;
+{   
+    public GameObject zombie;
     public PlayerAttributes player;
 
     // Start is called before the first frame update
