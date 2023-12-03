@@ -7,14 +7,17 @@ public class VRShoot : MonoBehaviour
     public SimpleShoot simpleShoot;
     public int rounds = 6;
 
+    [SerializeField]
+    AudioSource bulletAudio;
+    [SerializeField]
+    AudioSource emptyAudio;
+
     private OVRGrabbable grabbable;
-    private AudioSource bulletAudio;
 
     // Start is called before the first frame update
     void Start()
     {
         grabbable = GetComponent<OVRGrabbable>();
-        bulletAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -22,10 +25,10 @@ public class VRShoot : MonoBehaviour
     {
         if (OVRInput.GetActiveController() == OVRInput.Controller.Touch)
         {
+            Debug.Log("Shoot grabber: " + grabbable.isGrabbed);
             if (grabbable.isGrabbed)
             {
                 OVRGrabber grabber = grabbable.grabbedBy;
-
                 if (grabber.GetController() == OVRInput.Controller.RTouch && OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
                 {
                     Shoot(grabber.GetController());
@@ -57,7 +60,7 @@ public class VRShoot : MonoBehaviour
         }
         else
         {
-            //TODO: Play empty gun sound
+            emptyAudio.Play();
         }
     }
 

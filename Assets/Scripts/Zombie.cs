@@ -18,10 +18,10 @@ public class Zombie : MonoBehaviour
         //Vector3 pos = new Vector3(0, 0, -2);
         Vector3 pos = new Vector3(-4, 0, 0);
 
-        Vector3 zPos = Camera.main.transform.forward *10;
+        Vector3 zPos = Camera.main.transform.forward *5;
         zPos = Quaternion.AngleAxis(Random.Range(-90, 90), Vector3.up) * zPos;
-        Instantiate(zombie, pos, Quaternion.identity);
+        Instantiate(zombie, zPos, Quaternion.identity);
         if (!player.dead)
-            Invoke("SpawnZombie", Random.Range(1, 10));
+            Invoke("SpawnZombie", Random.Range(1, 5));
     }
 }

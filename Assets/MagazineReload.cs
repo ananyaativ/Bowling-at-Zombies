@@ -6,6 +6,10 @@ public class MagazineReload : MonoBehaviour
 {
     [SerializeField]
     VRShoot shoot;
+    [SerializeField]
+    AudioSource reloadAudio;
+    [SerializeField]
+    Magazine magazine;
 
     // Start is called before the first frame update
     void Start()
@@ -21,27 +25,17 @@ public class MagazineReload : MonoBehaviour
 
     private void ReloadGun(Collider other)
     {
-        Debug.Log("Detecting reload");
         if (other.tag == "magazine")
         {
             shoot.rounds = 6;
             Destroy(other.gameObject);
             Debug.Log("Reloading magazine");
-            //TODO: add sound
+            reloadAudio.Play();
+            magazine.Invoke("SpawnMagazine", 10);
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        ReloadGun(other);
-    }
-
     private void OnTriggerStay(Collider other)
-    {
-        ReloadGun(other);
-    }
-
-    private void OnTriggerExit(Collider other)
     {
         ReloadGun(other);
     }
