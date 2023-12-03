@@ -20,13 +20,28 @@ public class VRShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
+        if (OVRInput.GetActiveController() == OVRInput.Controller.Touch)
         {
-            Debug.Log("Shooting");
-            simpleShoot.StartShoot();
-            audio.Play();
-            StartCoroutine(Vibrate());
+            if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
+            {
+                Shoot();
+            }
+        } else
+        {
+            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
+            {
+                Shoot();
+            }
         }
+        
+    }
+
+    void Shoot()
+    {
+        Debug.Log("Shooting");
+        simpleShoot.StartShoot();
+        audio.Play();
+        StartCoroutine(Vibrate());
     }
 
     IEnumerator Vibrate()

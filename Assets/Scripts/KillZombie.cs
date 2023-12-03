@@ -7,7 +7,7 @@ public class KillZombie : MonoBehaviour
     [SerializeField]
     Chase c;
 
-    void OnTriggerEnter(Collider collider)
+    public void Kill(Collider collider)
     {
         if (collider.gameObject.tag == "bullet")
         {
@@ -23,37 +23,18 @@ public class KillZombie : MonoBehaviour
         }
     }
 
-
+    void OnTriggerEnter(Collider collider)
+    {
+        Kill(collider);
+    }
 
     void OnTriggerStay(Collider collider)
     {
-        if (collider.gameObject.tag == "bullet")
-        {
-            Debug.Log("Colliding with bullet");
-            c.Kill();
-            this.GetComponent<Collider>().enabled = false;
-            Destroy(this.gameObject, 3);
-            PlayerAttributes.instance.ChangeScoreBy(1);
-        }
-        else if (collider.gameObject.tag == "player")
-        {
-            PlayerAttributes.instance.ChangeHealthBy(-1);
-        }
+        Kill(collider);
     }
 
     void OnTriggerExit(Collider collider)
     {
-        if (collider.gameObject.tag == "bullet")
-        {
-            Debug.Log("Colliding with bullet");
-            c.Kill();
-            this.GetComponent<Collider>().enabled = false;
-            Destroy(this.gameObject, 3);
-            PlayerAttributes.instance.ChangeScoreBy(1);
-        }
-        else if (collider.gameObject.tag == "player")
-        {
-            PlayerAttributes.instance.ChangeHealthBy(-1);
-        }
+        Kill(collider);
     }
 }

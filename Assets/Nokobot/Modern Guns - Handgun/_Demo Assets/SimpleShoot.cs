@@ -17,7 +17,7 @@ public class SimpleShoot : MonoBehaviour
 
     [Header("Settings")]
     [Tooltip("Specify time to destory the casing object")] [SerializeField] private float destroyTimer = 2f;
-    [Tooltip("Bullet Speed")] [SerializeField] private float shotPower = 3f;
+    [Tooltip("Bullet Speed")] [SerializeField] private float shotPower = 100f;
     [Tooltip("Casing Ejection Speed")] [SerializeField] private float ejectPower = 5f;
 
 
