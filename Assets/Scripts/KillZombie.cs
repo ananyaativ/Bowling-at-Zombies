@@ -11,21 +11,28 @@ public class KillZombie : MonoBehaviour
     {
         if (collider.gameObject.tag == "bullet")
         {
-            Debug.Log("Colliding with bullet");
+            //Debug.Log("Colliding with bullet");
             c.Kill();
             this.GetComponent<Collider>().enabled = false;
             Destroy(transform.parent.parent.gameObject, 3);
             PlayerAttributes.instance.ChangeScoreBy(1);
         }
-        else if (collider.gameObject.tag == "player")
+    }
+
+    IEnumerator Damage(Collider collider)
+    {
+        while (collider.gameObject.tag == "player")
         {
+            Debug.Log("colliding with player");
             PlayerAttributes.instance.ChangeHealthBy(-1);
+            yield return new WaitForSeconds(2);
         }
     }
 
     void OnTriggerEnter(Collider collider)
     {
         Kill(collider);
+        StartCoroutine(Damage(collider));
     }
 
     void OnTriggerStay(Collider collider)
