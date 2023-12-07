@@ -10,6 +10,8 @@ public class Zombie : MonoBehaviour
 
     Vector3[] boundary;
 
+    private int spawnMultiplier = 10;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,16 +20,19 @@ public class Zombie : MonoBehaviour
         Debug.Log("Boundary: " + boundary.Length);
     }
 
-    void SpawnZombie()
+    public void SpawnZombie()
     {
         //Vector3 pos = new Vector3(0, 0, -2);
         Vector3 pos = SpawnPoint();
 
-        Vector3 zPos = Camera.main.transform.forward *5;
+        Vector3 zPos = Camera.main.transform.forward * 5;
         zPos = Quaternion.AngleAxis(Random.Range(-90, 90), Vector3.up) * zPos;
         Instantiate(zombie, pos, Quaternion.identity);
         if (!player.dead)
-            Invoke("SpawnZombie", Random.Range(1, 5));
+        {
+            Invoke("SpawnZombie", 3);
+        }
+            
     }
 
     Vector3 SpawnPoint()
@@ -38,10 +43,10 @@ public class Zombie : MonoBehaviour
         //}
 
         float n = Random.Range(0.0f, 1.0f);
-        int wall = Random.Range(0, 4);
+        int wall = Random.Range(0, boundary.Length);
 
         Vector3 c1 = boundary[wall];
-        Vector3 c2 = boundary[(wall + 1) % 4];
+        Vector3 c2 = boundary[(wall + 1) % boundary.Length];
 
         Vector3 d = c2 - c1;
 

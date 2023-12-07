@@ -7,6 +7,7 @@ public class Magazine : MonoBehaviour
     public GameObject magazine;
     public PlayerAttributes player;
     public bool spawn = true;
+    public Transform playerPos;
 
     // Start is called before the first frame update
     void Start()
@@ -16,13 +17,8 @@ public class Magazine : MonoBehaviour
 
     void SpawnMagazine()
     {
-        //if (spawn)
-        //{
-            //Vector3 pos = new Vector3(0, 0, -2);
-            Vector3 pos = new Vector3(0, 1, 0);
+        Vector3 pos = playerPos.position + new Vector3(0, 0, 0.25f);
 
-            Instantiate(magazine, pos, Quaternion.identity);
-        Debug.Log("Spawning magazine");
-        //}
+        Instantiate(magazine, pos, Quaternion.identity);
     }
 }

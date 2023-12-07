@@ -8,14 +8,16 @@ public class PlayerAttributes : MonoBehaviour
     public static PlayerAttributes instance;
 
     public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI highScoreText;
     public TextMeshProUGUI healthText;
+    public TextMeshProUGUI gameOverText;
     public GameObject gameOver;
+    public GameObject scoreCanvas;
     public bool dead = false;
     public GameObject gun1;
     public GameObject gun2;
     public GameObject magazine;
     public GameObject restartButton;
+    public Zombie zombie;
 
     [SerializeField]
     AudioSource zombieAudio;
@@ -37,7 +39,6 @@ public class PlayerAttributes : MonoBehaviour
     {
         highScore = PlayerPrefs.GetInt("highScore", 0);
         scoreText.text = "SCORE: " + score.ToString();
-        highScoreText.text = "HIGHSCORE: " + highScore.ToString();
         healthText.text = "HEALTH: " + health.ToString();
         zombieAudio.Play();
     }
@@ -50,12 +51,7 @@ public class PlayerAttributes : MonoBehaviour
             //stop displaying gun and magazine
             gameOver.SetActive(true);
 
-            dead = true;
             //Debug.Log("End game");
-        }
-        if (dead && OVRInput.Get(OVRInput.Button.One))
-        {
-            RestartGame();
         }
     }
 
@@ -63,6 +59,7 @@ public class PlayerAttributes : MonoBehaviour
     {
         health += change;
         healthText.text = "HEALTH: " + health.ToString();
+        Debug.Log("Health: " + health);
     }
 
     public void ChangeScoreBy(int change)
@@ -77,34 +74,50 @@ public class PlayerAttributes : MonoBehaviour
     {
         if (dead)
         {
+            // Resetting score and health
             score = 0;
             health = maxHealth;
+            scoreText.text = "SCORE: " + score.ToString();
+            healthText.text = "HEALTH: " + health.ToString();
+
             dead = false;
             gameOver.SetActive(false);
             zombieAudio.Play();
+
+            // Resetting guns
             gun1.SetActive(true);
+            gun1.GetComponent<VRShoot>().rounds = 12;
             gun2.SetActive(true);
+            gun2.GetComponent<VRShoot>().rounds = 12;
             magazine.SetActive(true);
             restartButton.SetActive(false);
+            scoreCanvas.SetActive(true);
+            zombie.SpawnZombie();
         }
     }
 
 
     public void GameOver()
     {
+        dead = true;
 
         GameObject[] allObjects = GameObject.FindGameObjectsWithTag("zombie");
         foreach (GameObject obj in allObjects)
         {
             Destroy(obj);
         }
-
+        scoreCanvas.SetActive(false);
         zombieAudio.Stop();
         gun1.SetActive(false);
         gun2.SetActive(false);
         Destroy(GameObject.FindGameObjectWithTag("magazine"));
         restartButton.SetActive(true);
+
+        gameOverText.text = "Score: " + score + "\nHigh Score: " + highScore;
     }
 
-
+    public int GetScore()
+    {
+        return score;
+    }
 }

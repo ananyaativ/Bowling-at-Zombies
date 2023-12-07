@@ -6,6 +6,8 @@ public class KillZombie : MonoBehaviour
 {
     [SerializeField]
     Chase c;
+    [SerializeField]
+    AudioSource zombieEating;
 
     public void Kill(Collider collider)
     {
@@ -21,6 +23,7 @@ public class KillZombie : MonoBehaviour
 
     IEnumerator Damage(Collider collider)
     {
+        zombieEating.Play();
         while (collider.gameObject.tag == "player")
         {
             Debug.Log("colliding with player");
