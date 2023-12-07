@@ -21,8 +21,17 @@ public class RestartButton : MonoBehaviour
     {
         if (other.name == "RightHandAnchor" || other.name == "LeftHandAnchor")
         {
+            StartCoroutine(Vibrate(OVRInput.Controller.RTouch));
+            StartCoroutine(Vibrate(OVRInput.Controller.LTouch));
             Debug.Log("Button!");
             player.RestartGame();
         }
+    }
+
+    IEnumerator Vibrate(OVRInput.Controller controller)
+    {
+        OVRInput.SetControllerVibration(2.0f, 0.5f, controller);
+        yield return new WaitForSeconds(0.5f);
+        OVRInput.SetControllerVibration(0.0f, 0.0f, controller);
     }
 }

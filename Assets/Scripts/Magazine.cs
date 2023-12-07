@@ -6,7 +6,6 @@ public class Magazine : MonoBehaviour
 {
     public GameObject magazine;
     public PlayerAttributes player;
-    public bool spawn = true;
     public Transform playerPos;
 
     // Start is called before the first frame update
@@ -15,7 +14,7 @@ public class Magazine : MonoBehaviour
         Invoke("SpawnMagazine", 10);
     }
 
-    void SpawnMagazine()
+    public void SpawnMagazine()
     {
         Vector3 pos = playerPos.position + new Vector3(0, 0, 0.25f);
 

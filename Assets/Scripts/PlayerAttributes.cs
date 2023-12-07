@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class PlayerAttributes : MonoBehaviour
 {
@@ -18,6 +19,9 @@ public class PlayerAttributes : MonoBehaviour
     public GameObject magazine;
     public GameObject restartButton;
     public Zombie zombie;
+
+    [SerializeField]
+    GameObject gotHitScreen;
 
     [SerializeField]
     AudioSource zombieAudio;
@@ -45,6 +49,15 @@ public class PlayerAttributes : MonoBehaviour
 
     private void Update()
     {
+        if (gotHitScreen != null)
+        {
+            if (gotHitScreen.GetComponent<Image>().color.a > 0)
+            {
+                var color = gotHitScreen.GetComponent<Image>().color;
+                color.a -= 0.01f;
+                gotHitScreen.GetComponent<Image>().color = color;
+            }
+        }
         if (health <= 0)
         { 
             GameOver();
@@ -60,6 +73,12 @@ public class PlayerAttributes : MonoBehaviour
         health += change;
         healthText.text = "HEALTH: " + health.ToString();
         Debug.Log("Health: " + health);
+        if (health % 5 == 0)
+        {
+            var color = gotHitScreen.GetComponent<Image>().color;
+            color.a = 1.0f;
+            gotHitScreen.GetComponent<Image>().color = color;
+        }
     }
 
     public void ChangeScoreBy(int change)
@@ -89,6 +108,8 @@ public class PlayerAttributes : MonoBehaviour
             gun1.GetComponent<VRShoot>().rounds = 12;
             gun2.SetActive(true);
             gun2.GetComponent<VRShoot>().rounds = 12;
+
+            magazine.GetComponent<Magazine>().SpawnMagazine();
             magazine.SetActive(true);
             restartButton.SetActive(false);
             scoreCanvas.SetActive(true);

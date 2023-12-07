@@ -21,6 +21,7 @@ public class KillZombie : MonoBehaviour
         }
     }
 
+
     IEnumerator Damage(Collider collider)
     {
         zombieEating.Play();
