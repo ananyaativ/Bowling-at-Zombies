@@ -15,6 +15,7 @@ public class Zombie : MonoBehaviour
     {
         Invoke("SpawnZombie", 1);
         boundary = OVRManager.boundary.GetGeometry(OVRBoundary.BoundaryType.PlayArea);
+        Debug.Log("Boundary: " + boundary.Length);
     }
 
     void SpawnZombie()
