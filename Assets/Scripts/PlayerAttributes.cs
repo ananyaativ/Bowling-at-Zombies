@@ -15,6 +15,7 @@ public class PlayerAttributes : MonoBehaviour
     public GameObject gun1;
     public GameObject gun2;
     public GameObject magazine;
+    public GameObject restartButton;
 
     [SerializeField]
     AudioSource zombieAudio;
@@ -74,14 +75,18 @@ public class PlayerAttributes : MonoBehaviour
 
     public void RestartGame()
     {
-        score = 0;
-        health = maxHealth;
-        dead = false;
-        gameOver.SetActive(false);
-        zombieAudio.Play();
-        gun1.SetActive(true);
-        gun2.SetActive(true);
-        magazine.SetActive(true);
+        if (dead)
+        {
+            score = 0;
+            health = maxHealth;
+            dead = false;
+            gameOver.SetActive(false);
+            zombieAudio.Play();
+            gun1.SetActive(true);
+            gun2.SetActive(true);
+            magazine.SetActive(true);
+            restartButton.SetActive(false);
+        }
     }
 
 
@@ -98,7 +103,7 @@ public class PlayerAttributes : MonoBehaviour
         gun1.SetActive(false);
         gun2.SetActive(false);
         Destroy(GameObject.FindGameObjectWithTag("magazine"));
-
+        restartButton.SetActive(true);
     }
 
 
