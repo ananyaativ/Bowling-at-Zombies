@@ -10,8 +10,6 @@ public class Zombie : MonoBehaviour
 
     Vector3[] boundary;
 
-    private int spawnMultiplier = 10;
-
     // Start is called before the first frame update
     void Start()
     {
