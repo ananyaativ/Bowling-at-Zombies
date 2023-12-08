@@ -27,9 +27,9 @@ public class MagazineReload : MonoBehaviour
     {
         if (other.tag == "magazine")
         {
-            shoot.rounds = 6;
+            shoot.rounds = 10;
+            other.GetComponent<OVRGrabbable>().enabled = false;
             Destroy(other.gameObject);
-            Debug.Log("Reloading magazine");
             reloadAudio.Play();
             magazine.Invoke("SpawnMagazine", 10);
         }

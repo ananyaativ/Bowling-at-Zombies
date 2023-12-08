@@ -5,7 +5,7 @@ using UnityEngine;
 public class VRShoot : MonoBehaviour
 {
     public SimpleShoot simpleShoot;
-    public int rounds = 6;
+    public int rounds = 10;
 
     [SerializeField]
     AudioSource bulletAudio;

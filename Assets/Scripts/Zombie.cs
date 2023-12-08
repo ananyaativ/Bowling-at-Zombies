@@ -30,7 +30,13 @@ public class Zombie : MonoBehaviour
         Instantiate(zombie, pos, Quaternion.identity);
         if (!player.dead)
         {
-            Invoke("SpawnZombie", 3);
+            if (player.GetScore() > 100)
+            {
+                Invoke("SpawnZombie", 1);
+            } else
+            { 
+                Invoke("SpawnZombie", 3);
+            }
         }
             
     }

@@ -21,9 +21,6 @@ public class PlayerAttributes : MonoBehaviour
     public Zombie zombie;
 
     [SerializeField]
-    GameObject gotHitScreen;
-
-    [SerializeField]
     AudioSource zombieAudio;
 
     int score = 0;
@@ -49,22 +46,9 @@ public class PlayerAttributes : MonoBehaviour
 
     private void Update()
     {
-        if (gotHitScreen != null)
-        {
-            if (gotHitScreen.GetComponent<Image>().color.a > 0)
-            {
-                var color = gotHitScreen.GetComponent<Image>().color;
-                color.a -= 0.01f;
-                gotHitScreen.GetComponent<Image>().color = color;
-            }
-        }
         if (health <= 0)
         { 
             GameOver();
-            //stop displaying gun and magazine
-            gameOver.SetActive(true);
-
-            //Debug.Log("End game");
         }
     }
 
@@ -72,21 +56,16 @@ public class PlayerAttributes : MonoBehaviour
     {
         health += change;
         healthText.text = "HEALTH: " + health.ToString();
-        Debug.Log("Health: " + health);
-        if (health % 5 == 0)
-        {
-            var color = gotHitScreen.GetComponent<Image>().color;
-            color.a = 1.0f;
-            gotHitScreen.GetComponent<Image>().color = color;
-        }
     }
 
     public void ChangeScoreBy(int change)
     {
         score += change;
         scoreText.text = "SCORE: " + score.ToString();
-        if (highScore < score)
+        if (highScore < score) {
+            highScore = score;
             PlayerPrefs.SetInt("highScore", score);
+        }
     }
 
     public void RestartGame()
@@ -120,6 +99,7 @@ public class PlayerAttributes : MonoBehaviour
 
     public void GameOver()
     {
+        gameOver.SetActive(true);
         dead = true;
 
         GameObject[] allObjects = GameObject.FindGameObjectsWithTag("zombie");
@@ -127,6 +107,7 @@ public class PlayerAttributes : MonoBehaviour
         {
             Destroy(obj);
         }
+
         scoreCanvas.SetActive(false);
         zombieAudio.Stop();
         gun1.SetActive(false);

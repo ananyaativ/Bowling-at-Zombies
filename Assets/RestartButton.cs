@@ -23,7 +23,6 @@ public class RestartButton : MonoBehaviour
         {
             StartCoroutine(Vibrate(OVRInput.Controller.RTouch));
             StartCoroutine(Vibrate(OVRInput.Controller.LTouch));
-            Debug.Log("Button!");
             player.RestartGame();
         }
     }

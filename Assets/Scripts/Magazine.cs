@@ -16,7 +16,7 @@ public class Magazine : MonoBehaviour
 
     public void SpawnMagazine()
     {
-        Vector3 pos = playerPos.position + new Vector3(0, 0, 0.25f);
+        Vector3 pos = playerPos.position + new Vector3(0, -0.25f, 0.25f);
 
         Instantiate(magazine, pos, Quaternion.identity);
     }

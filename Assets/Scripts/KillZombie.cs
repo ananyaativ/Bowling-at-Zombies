@@ -27,7 +27,6 @@ public class KillZombie : MonoBehaviour
         zombieEating.Play();
         while (collider.gameObject.tag == "player")
         {
-            Debug.Log("colliding with player");
             PlayerAttributes.instance.ChangeHealthBy(-1);
             yield return new WaitForSeconds(2);
         }
