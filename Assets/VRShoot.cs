@@ -25,7 +25,7 @@ public class VRShoot : MonoBehaviour
     {
         if (OVRInput.GetActiveController() == OVRInput.Controller.Touch)
         {
-            Debug.Log("Shoot grabber: " + grabbable.isGrabbed);
+           
             if (grabbable.isGrabbed)
             {
                 OVRGrabber grabber = grabbable.grabbedBy;
@@ -53,7 +53,6 @@ public class VRShoot : MonoBehaviour
         if (rounds > 0)
         {
             rounds -= 1;
-            Debug.Log("Shooting");
             simpleShoot.StartShoot();
             bulletAudio.Play();
             StartCoroutine(Vibrate(controller));
